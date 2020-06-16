@@ -5,11 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PsychoPlacebo</title>
+    <style>
+        #copy-tips {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+            opacity: 0;
+        }
+
+        p {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
+    <div id="copy-tips">
+        <p>请复制下方网址，在手机浏览器中打开</p>
+        <p>http://lxy.meizitoday.com</p>
+    </div>
     <script>
+        var isWeixin = function () { //判断是否是微信
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.match(/MicroMessenger/i) == "micromessenger";
+        };
 
-        location.href = 'http://lxy.meizitoday.com/'
+        var isAndroid = function () {
+            return navigator.userAgent.match(/android/i);
+        }
+
+        if (isWeixin() && isAndroid()) {
+            document.getElementById('copy-tips').style.opacity = 1;
+        } else {
+            location.href = 'http://lxy.meizitoday.com/'
+        }
     </script>
     
 </body>
